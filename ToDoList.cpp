@@ -1,15 +1,17 @@
-//This is my first project - Topic : To Do List
+//This is my first project - Topic : To Do List using "Singly Linked List"
 #include <iostream>
 #include <string>
 #include <cstdlib>
 #define MAX_TODO_SIZE 300
 
+//create struct type variable
 struct toDoList{
     char getToDo[MAX_TODO_SIZE];
     struct toDoList *nextNode;
 };
 typedef struct toDoList list;
 
+//function references
 void welcomeScreen();
 void createNewToDo(list**);
 void displayList(list**);
@@ -22,7 +24,6 @@ int main(){
     welcomeScreen();
     while(true){
         int selectOption;
-
         system("color 0F");
         system("cls");
         std::cout <<"\n\n\n\n";
@@ -111,7 +112,7 @@ void createNewToDo(list **head_ref){
             }
             else if(choice == 'y'){
                 if((*head_ref) == NULL){
-                    firstNode = new list();
+                    firstNode = new list(); //allocating memory
                     (*head_ref) = firstNode;
                     std::cout << "\t\t" << countTopic <<".Topic: ";
                     std::cin.getline(firstNode->getToDo, MAX_TODO_SIZE);
@@ -140,7 +141,6 @@ void createNewToDo(list **head_ref){
 void countToDo(list **head_ref){
     list *temp;
     int count = 1;
-
     temp = (*head_ref);
     std::cout << "\n\n\n\n";
     std::cout << "\t\tYour To-Dos:\n";
@@ -154,8 +154,7 @@ void countToDo(list **head_ref){
 
 void deleteToDo(list **head_ref){
     system("cls");
-    list *current = (*head_ref);
-    list *next;
+    list *current = (*head_ref), *next;
     int selectOption;
 
     std::cout << "\n\n\n\n";
@@ -186,7 +185,7 @@ void deleteToDo(list **head_ref){
                 break;
             }
         }
-        else if(selectOption == 2){ //This section is to delete the list items by position
+        else if(selectOption == 2){ //This section is to delete the list items by nth position
             system("cls");
             if((*head_ref) == NULL){
                 std::cout << "\n\n\n\n";
@@ -227,7 +226,6 @@ void deleteToDo(list **head_ref){
 void updateToDo(list **head_ref){
     system("color 0F");
     system("cls");
-
     int step = 1;
     char choice;
     list *firstNode, *lastNode;
